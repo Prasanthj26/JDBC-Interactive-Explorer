@@ -1,0 +1,569 @@
+:root {
+  color-scheme: dark;
+  --bg: #071012;
+  --panel: #10191c;
+  --panel-2: #132226;
+  --line: #2d464c;
+  --text: #e7f7f7;
+  --muted: #9db5b7;
+  --cyan: #42e8f0;
+  --green: #7dff9f;
+  --amber: #ffd166;
+  --red: #ff6b6b;
+  --blue: #70a7ff;
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(66, 232, 240, 0.13), transparent 34%),
+    radial-gradient(circle at 84% 18%, rgba(125, 255, 159, 0.1), transparent 28%),
+    linear-gradient(135deg, #05090b, var(--bg));
+  color: var(--text);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+select,
+textarea,
+input {
+  border-radius: 8px;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+button:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  transform: translateY(-160%);
+  background: var(--amber);
+  color: #081012;
+  padding: 0.65rem 0.9rem;
+  z-index: 10;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.app-shell {
+  width: min(1420px, 100%);
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.welcome-screen {
+  min-height: calc(100vh - 2rem);
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 1.35rem;
+  text-align: center;
+}
+
+.welcome-screen h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 8vw, 5.7rem);
+  letter-spacing: 0;
+}
+
+.welcome-screen p {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 2.5vw, 1.45rem);
+}
+
+.sim-label,
+.eyebrow,
+#stepKicker {
+  color: var(--green);
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
+.primary-action,
+.ghost-button,
+.mini-action {
+  min-height: 44px;
+  padding: 0.72rem 1rem;
+  color: var(--text);
+  background: linear-gradient(135deg, rgba(66, 232, 240, 0.95), rgba(112, 167, 255, 0.85));
+  box-shadow: 0 0 26px rgba(66, 232, 240, 0.22);
+  font-weight: 700;
+}
+
+.ghost-button,
+.mini-action {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+
+.mini-action {
+  min-height: 38px;
+  padding: 0.48rem 0.7rem;
+}
+
+.explorer {
+  display: grid;
+  gap: 1rem;
+}
+
+.topbar,
+.mode-header,
+.lesson-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.topbar {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  background: rgba(16, 25, 28, 0.84);
+  box-shadow: var(--shadow);
+}
+
+.topbar h2,
+.lesson-header h2,
+.mode-header h2 {
+  margin: 0.1rem 0 0;
+}
+
+.topbar-actions,
+.lesson-actions,
+.sql-controls,
+.input-row,
+.operation-tabs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.switch {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--muted);
+}
+
+.switch input {
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: var(--cyan);
+}
+
+.progress-nav {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(19, 34, 38, 0.7);
+}
+
+.progress-nav ol {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 1px;
+  padding: 0;
+  margin: 0;
+  background: var(--line);
+}
+
+.progress-nav li {
+  min-height: 54px;
+  display: grid;
+  place-items: center;
+  padding: 0.45rem;
+  text-align: center;
+  background: #0d171a;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.progress-nav li.active {
+  color: var(--text);
+  background: rgba(66, 232, 240, 0.17);
+  box-shadow: inset 0 -3px 0 var(--cyan);
+}
+
+.progress-nav li.done {
+  color: var(--green);
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.92fr) minmax(320px, 1.35fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.stage-panel,
+.lesson-panel,
+.mode-card {
+  border: 1px solid var(--line);
+  background: rgba(16, 25, 28, 0.9);
+  box-shadow: var(--shadow);
+}
+
+.stage-panel {
+  padding: 1rem;
+}
+
+.flow-map {
+  position: relative;
+  display: grid;
+  gap: 0.62rem;
+  padding: 0.75rem 0.35rem;
+}
+
+.flow-line {
+  position: absolute;
+  top: 2.5rem;
+  bottom: 2.5rem;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(var(--cyan), var(--green));
+  opacity: 0.38;
+  z-index: 0;
+}
+
+.flow-node {
+  position: relative;
+  z-index: 1;
+  min-height: 54px;
+  width: min(100%, 360px);
+  justify-self: center;
+  padding: 0.65rem 0.85rem;
+  color: var(--text);
+  border: 1px solid var(--line);
+  background: #0b1518;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.flow-node.active,
+.flow-node.clicked {
+  border-color: var(--cyan);
+  background: rgba(66, 232, 240, 0.12);
+  box-shadow: 0 0 22px rgba(66, 232, 240, 0.22), inset 0 0 24px rgba(66, 232, 240, 0.08);
+}
+
+.packet {
+  position: absolute;
+  left: calc(50% - 7px);
+  top: 2.6rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--amber);
+  box-shadow: 0 0 18px var(--amber);
+  opacity: 0;
+  z-index: 2;
+}
+
+.packet.run {
+  animation: packetTravel 1s ease-in-out;
+}
+
+@keyframes packetTravel {
+  0% { opacity: 0; transform: translateY(0); }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(430px); }
+}
+
+.component-info,
+.mode-copy,
+.hint-text {
+  margin: 1rem 0 0;
+  color: var(--muted);
+}
+
+.lesson-panel {
+  min-height: 620px;
+  padding: 1rem;
+}
+
+.step-content {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.lesson-actions {
+  justify-content: flex-end;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+
+.code-panel,
+.terminal,
+textarea {
+  border: 1px solid var(--line);
+  background: #081012;
+  color: var(--text);
+}
+
+.code-panel {
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+  line-height: 1.6;
+}
+
+.code-panel code {
+  font-family: Consolas, "Cascadia Code", monospace;
+  white-space: pre;
+}
+
+.token-button {
+  display: inline;
+  min-height: auto;
+  padding: 0.05rem 0.18rem;
+  color: var(--amber);
+  background: rgba(255, 209, 102, 0.1);
+  border: 1px solid rgba(255, 209, 102, 0.35);
+}
+
+.concept-grid,
+.db-grid,
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.concept-card,
+.resource-item {
+  padding: 0.9rem;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.concept-card strong,
+.resource-item strong {
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.db-card {
+  border: 1px solid var(--line);
+  background: #0b1518;
+  padding: 0.85rem;
+}
+
+.db-title {
+  margin: 0 0 0.7rem;
+  color: var(--green);
+  font-weight: 700;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-wrap: anywhere;
+}
+
+th,
+td {
+  padding: 0.62rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+tr.highlight,
+tr.returning {
+  background: rgba(66, 232, 240, 0.14);
+  box-shadow: inset 4px 0 0 var(--cyan);
+}
+
+.terminal {
+  min-height: 52px;
+  padding: 0.85rem;
+  color: var(--green);
+  font-family: Consolas, "Cascadia Code", monospace;
+  overflow-wrap: anywhere;
+}
+
+.play-modes {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
+  gap: 1rem;
+}
+
+.mode-card {
+  padding: 1rem;
+}
+
+.challenge-blocks {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin: 1rem 0;
+}
+
+.challenge-block {
+  min-height: 60px;
+  padding: 0.6rem;
+  color: var(--text);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.challenge-block.correct {
+  color: #06120a;
+  background: var(--green);
+}
+
+.challenge-block.wrong {
+  background: rgba(255, 107, 107, 0.18);
+  border-color: var(--red);
+}
+
+.score {
+  color: var(--amber);
+  font-weight: 700;
+}
+
+.playground-card {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.sql-controls label,
+.editor-label,
+.input-row label {
+  color: var(--muted);
+}
+
+select,
+input,
+textarea {
+  border: 1px solid var(--line);
+  background: #081012;
+  color: var(--text);
+  min-height: 44px;
+  padding: 0.62rem;
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+  font-family: Consolas, "Cascadia Code", monospace;
+}
+
+.status-ok {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.status-warn {
+  color: var(--amber);
+}
+
+.operation-tabs button[aria-pressed="true"] {
+  color: #071012;
+  background: var(--amber);
+}
+
+@media (max-width: 980px) {
+  .workspace,
+  .play-modes {
+    grid-template-columns: 1fr;
+  }
+
+  .progress-nav ol {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .app-shell {
+    padding: 0.6rem;
+  }
+
+  .topbar,
+  .mode-header,
+  .lesson-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .topbar-actions,
+  .lesson-actions,
+  .sql-controls,
+  .input-row,
+  .operation-tabs {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .primary-action,
+  .ghost-button,
+  .mini-action,
+  select,
+  input {
+    width: 100%;
+  }
+
+  .concept-grid,
+  .db-grid,
+  .resource-grid,
+  .challenge-blocks {
+    grid-template-columns: 1fr;
+  }
+
+  .progress-nav ol {
+    grid-template-columns: 1fr;
+  }
+
+  th,
+  td {
+    padding: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}

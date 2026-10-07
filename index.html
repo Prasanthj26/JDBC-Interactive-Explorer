@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JDBC Interactive Explorer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to JDBC explorer</a>
+
+  <main id="main" class="app-shell">
+    <section id="welcomeScreen" class="welcome-screen" aria-labelledby="welcomeTitle">
+      <div class="sim-label">JDBC VISUAL SIMULATION</div>
+      <h1 id="welcomeTitle">JDBC INTERACTIVE EXPLORER</h1>
+      <p>See what happens when Java talks to a database.</p>
+      <button id="startBtn" class="primary-action" type="button">START JDBC JOURNEY</button>
+    </section>
+
+    <section id="explorer" class="explorer hidden" aria-label="JDBC Interactive Explorer">
+      <header class="topbar">
+        <div>
+          <span class="sim-label">JDBC VISUAL SIMULATION</span>
+          <h2>JDBC Journey</h2>
+        </div>
+        <div class="topbar-actions">
+          <label class="switch">
+            <input id="beginnerMode" type="checkbox" checked>
+            <span>Beginner Mode</span>
+          </label>
+          <button id="restartBtn" class="ghost-button" type="button">Restart JDBC Journey</button>
+        </div>
+      </header>
+
+      <nav class="progress-nav" aria-label="Journey progress">
+        <ol id="progressList"></ol>
+      </nav>
+
+      <div class="workspace">
+        <aside class="stage-panel" aria-label="JDBC visual flow">
+          <div class="flow-map" id="flowMap">
+            <button class="flow-node" data-component="java" type="button">Java Application</button>
+            <button class="flow-node" data-component="api" type="button">JDBC API</button>
+            <button class="flow-node" data-component="manager" type="button">DriverManager</button>
+            <button class="flow-node" data-component="driver" type="button">MySQL JDBC Driver</button>
+            <button class="flow-node" data-component="connection" type="button">Database Connection</button>
+            <button class="flow-node" data-component="statement" type="button">Statement / PreparedStatement</button>
+            <button class="flow-node" data-component="query" type="button">SQL Query</button>
+            <button class="flow-node" data-component="database" type="button">MySQL Database</button>
+            <button class="flow-node" data-component="resultset" type="button">ResultSet</button>
+            <div class="flow-line" aria-hidden="true"></div>
+            <div id="packet" class="packet" aria-hidden="true"></div>
+          </div>
+          <p id="componentInfo" class="component-info" aria-live="polite">Click a component to learn its job in the JDBC flow.</p>
+        </aside>
+
+        <section class="lesson-panel">
+          <div class="lesson-header">
+            <p id="stepKicker">Step 1</p>
+            <h2 id="stepTitle">Java Application</h2>
+          </div>
+
+          <div id="stepContent" class="step-content"></div>
+
+          <div class="lesson-actions">
+            <button id="prevStepBtn" class="ghost-button" type="button">Back</button>
+            <button id="nextStepBtn" class="primary-action" type="button">Next</button>
+          </div>
+        </section>
+      </div>
+
+      <section class="play-modes" aria-label="Practice modes">
+        <div class="mode-card challenge-card">
+          <div class="mode-header">
+            <div>
+              <p class="eyebrow">Game Mode</p>
+              <h2>JDBC Challenge</h2>
+            </div>
+            <button id="resetChallengeBtn" class="ghost-button" type="button">Reset Challenge</button>
+          </div>
+          <p class="mode-copy">Click the disconnected blocks in the correct order to rebuild the JDBC flow.</p>
+          <div id="challengeBlocks" class="challenge-blocks"></div>
+          <div id="challengeFeedback" class="terminal" aria-live="polite">Start with the Java Application.</div>
+          <p id="challengeScore" class="score">Score: 0 / 10</p>
+        </div>
+
+        <div class="mode-card playground-card">
+          <div class="mode-header">
+            <div>
+              <p class="eyebrow">Interactive SQL Playground</p>
+              <h2>Safe Simulated JDBC Runner</h2>
+            </div>
+          </div>
+          <div class="sql-controls">
+            <label for="sqlType">Operation</label>
+            <select id="sqlType">
+              <option>SELECT</option>
+              <option>INSERT</option>
+              <option>UPDATE</option>
+              <option>DELETE</option>
+            </select>
+          </div>
+          <label for="sqlEditor" class="editor-label">SQL editor</label>
+          <textarea id="sqlEditor" rows="4" spellcheck="false">SELECT * FROM students;</textarea>
+          <button id="runSqlBtn" class="primary-action" type="button">Run Query</button>
+          <div id="playgroundOutput" class="terminal" aria-live="polite">Choose an operation and run a simulated query.</div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
